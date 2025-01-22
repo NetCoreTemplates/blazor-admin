@@ -4,18 +4,16 @@ export default {
         Bookings: {
             type: 'Booking',
             component: {
-                template:`<AutoQueryGrid :type="type" 
-                    selected-columns="id,name,roomType,roomNumber,bookingStartDate,bookingEndDate,cost,couponId,discount"
-                    :header-titles="{ roomNumber:'Room No', bookingStartDate:'Start Date', bookingEndDate:'End Date', couponId:'Coupon' }"
-                    :visible-from="{ roomNumber:'lg', bookingEndDate:'xl', cost:'md', couponId:'xl', discount:'never' }" />`,
+                template:`<AutoQueryGrid :type="type"
+                    selected-columns="id,name,roomType,roomNumber,bookingStartDate,bookingEndDate,cost,couponId,discount,notes,cancelled,employee" />`,
             },
         },
         Coupons: {
             type: 'Coupon',
             component: {
-                template:`<AutoQueryGrid :type="type" 
-                    selected-columns="id,name,description,discount,expiryDate" />`,
+                template:`<AutoQueryGrid :type="type"
+                    selected-columns="id,description,discount,expiryDate" />`,
             },
         },
-    },
+    }
 }

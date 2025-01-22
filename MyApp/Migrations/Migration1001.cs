@@ -11,7 +11,7 @@ using MyApp;
 
 namespace MyApp.Migrations;
 
-public class Migration1000 : MigrationBase
+public class Migration1001 : MigrationBase
 {
 
     [Notes("Captures a Persons Name & Room Booking information")]
