@@ -83,7 +83,7 @@ export default {
                           <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{formatNumber(stat.total)}}</dd>
                         </div>
                       </dl>
-                      <p class="mt-8 text-sm font-semibold leading-6">
+                      <div class="mt-8 text-sm font-semibold leading-6">
                         <div class="flex gap-x-2">
                             <div class="mr-2">Go to <span aria-hidden="true">&rarr;</span></div>
                             <a href="/locode/" class="text-indigo-600">Locode</a>    
@@ -92,7 +92,7 @@ export default {
                             <svg class="h-5 w-5 flex-shrink-0 text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path></svg>                            
                             <a href="/ui/" class="text-indigo-600">API Explorer</a>
                         </div>
-                      </p>
+                      </div>
                     </div>`,
                     setup() {
                         const client = useClient()
