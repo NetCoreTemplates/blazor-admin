@@ -16,6 +16,7 @@ export enum RoomType {
 
 @Read.route("/bookings","GET")
 @Read.route("/bookings/{Id}","GET")
+@Read.description("Find Bookings")
 @Create.route("/bookings","POST")
 @Create.description("Create a new Booking")
 @Update.notes("Find out how to quickly create a <a class='svg-external' target='_blank' href='https://youtu.be/nhc4MZufkcM'>C# Bookings App from Scratch</a>")

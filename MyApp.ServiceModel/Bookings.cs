@@ -13,6 +13,7 @@ namespace MyApp.ServiceModel;
 [Route("/bookings/{Id}","GET")]
 [Route("/bookings","GET")]
 [AutoApply(Behavior.AuditQuery)]
+[Description("Find Bookings")]
 [ValidateHasRole("Employee")]
 public class QueryBookings : QueryDb<Booking>
 {
