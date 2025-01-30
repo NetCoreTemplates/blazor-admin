@@ -2,7 +2,7 @@
 export type Config = {
   prompt:    "New Booking"
   api:       "~/MyApp.ServiceModel/Bookings.cs"
-  migration: "~/MyApp/Migrations/Migration1001.cs"
+  migration: "~/MyApp/Migrations/Migration1000.cs"
   uiMjs:     "~/MyApp/wwwroot/admin/sections/Bookings.mjs"
 }
 
