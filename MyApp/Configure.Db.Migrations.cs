@@ -42,6 +42,10 @@ public class ConfigureDbMigrations : IHostingStartup
             });
             AppTasks.Register("migrate.revert", args => migrator.Revert(args[0]));
             AppTasks.Register("migrate.rerun", args => migrator.Rerun(args[0]));
+            AppTasks.Register("App.json", args => // Default App.db 
+                appHost.VirtualFiles.WriteFile("App_Data/App.json", ClientConfig.ToSystemJson(
+                    migrator.DbFactory.GetTables(namedConnection:null, schema:null))));
+
             AppTasks.Run();
         });
 
