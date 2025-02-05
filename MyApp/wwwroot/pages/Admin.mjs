@@ -10,18 +10,20 @@ export default {
     <sidebar-layout ref="sidebar">
         <div class="flex h-16 shrink-0 items-center">
             <a href="/" class="text-2xl whitespace-nowrap overflow-x-hidden flex items-center">
-                <img class="mr-1 h-8 w-auto text-indigo-600" src="/img/logo.svg" alt="Logo">
+                <img class="mr-1 h-8 w-auto text-indigo-600 dark:text-indigo-300" src="/img/logo.svg" alt="Logo">
                 <span class="hidden sm:block text-2xl font-semibold">Admin</span>
             </a>
         </div>
         <nav class="flex flex-1 flex-col">
             <ul role="list" class="flex flex-1 flex-col gap-y-7">
                 <li v-for="group in new Set(Object.keys(sections).flatMap(k => sections[k].group))">
-                    <div v-if="group" class="text-sm font-semibold leading-6 text-gray-400">{{group}}</div>
+                    <div v-if="group" class="text-sm font-semibold leading-6 text-gray-400 dark:text-gray-500">{{group}}</div>
                     <ul role="list" class="-mx-2 space-y-1">
                         <li v-for="section in Object.keys(sections).map(k => sections[k].group === group ? sections[k] : null).filter(x => !!x)">
-                            <a @click.prevent="navTo(section.id)" :class="[activeSection.id === section.id ? 'bg-gray-50 text-indigo-600' : 'cursor-pointer text-gray-700 hover:text-indigo-600 hover:bg-gray-50', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold select-none']" @click="$forceUpdate()">
-                                <icon :svg="section.icon" class="h-6 w-6 shrink-0 text-indigo-600"></icon>
+                            <a @click.prevent="navTo(section.id)" :class="[activeSection.id === section.id 
+                                ? 'bg-gray-50 dark:bg-gray-900 text-indigo-600 dark:text-indigo-300' : 'cursor-pointer text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-300 hover:bg-gray-50 dark:hover:bg-gray-900', 
+                                'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold select-none']" @click="$forceUpdate()">
+                                <icon :svg="section.icon" class="h-6 w-6 shrink-0 text-indigo-600 dark:text-indigo-300"></icon>
                                 {{section.label}}
                             </a>
                         </li>
@@ -31,8 +33,8 @@ export default {
                     <div v-if="showUserMenu" class="font-normal absolute z-10 -mt-10 left-6 w-60 origin-top-right rounded-md bg-white dark:bg-black py-1 shadow-lg ring-1 ring-black dark:ring-gray-600 ring-opacity-5 focus:outline-none right-2" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                         <a href="/auth/logout" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800" role="menuitem" tabindex="-1">Logout</a>
                     </div>
-                    <span v-if="user" @click="showUserMenu=!showUserMenu" class="flex cursor-pointer bg-gray-50 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">
-                        <img class="h-8 w-8 rounded-full bg-gray-50" :src="user.profileUrl" alt="">
+                    <span v-if="user" @click="showUserMenu=!showUserMenu" class="flex cursor-pointer bg-gray-50 dark:bg-gray-900 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900">
+                        <img class="h-8 w-8 rounded-full bg-gray-50 dark:bg-gray-900" :src="user.profileUrl" alt="">
                         <span class="sr-only">Your profile</span>
                         <span aria-hidden="true">{{user.displayName}}</span>
                     </span>
@@ -40,10 +42,10 @@ export default {
             </ul>
         </nav>
         <template #mobiletitlebar>
-            <div class="flex-1 text-sm font-semibold leading-6 text-gray-900">{{ activeSection.title }}</div>
-            <span v-if="user" class="cursor-pointer bg-gray-50">
+            <div class="flex-1 text-sm font-semibold leading-6 text-gray-900 dark:text-gray-50">{{ activeSection.title }}</div>
+            <span v-if="user" class="cursor-pointer bg-gray-50 dark:bg-gray-900">
                 <span class="sr-only">Your profile</span>
-                <img class="h-8 w-8 rounded-full bg-gray-50" :src="user.profileUrl" alt="">
+                <img class="h-8 w-8 rounded-full bg-gray-50 dark:bg-gray-900" :src="user.profileUrl" alt="">
             </span>
         </template>
     </sidebar-layout>
@@ -54,13 +56,13 @@ export default {
                 <!-- TODO: Remove auto login convenience button -->
                 <div class="flex justify-center">
                     <div>
-                        <div class="text-center text-sm font-semibold leading-6 text-gray-400">Quick Links</div>
+                        <div class="text-center text-sm font-semibold leading-6 text-gray-400 dark:text-gray-500">Quick Links</div>
                         <PrimaryButton href="/?user=admin@email.com&pass=p@55wOrd">signin admin@email.com</PrimaryButton>
                     </div>
                 </div>
             </div>
             <div v-else>
-                <h1 class="hidden lg:block pt-4 mb-2 text-3xl font-bold leading-tight tracking-tight text-gray-900">{{ activeSection.title }}</h1>
+                <h1 class="hidden lg:block pt-4 mb-2 text-3xl font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-50">{{ activeSection.title }}</h1>
                 <component :key="refreshKey" :is="activeSection.component" @nav="navTo" :type="activeSection.type"></component>
             </div>            
         </div>
@@ -68,7 +70,7 @@ export default {
 </div>    
     `,
     setup() {
-        
+
         const { typeOf } = useMetadata()
 
         const sections = {
@@ -78,19 +80,19 @@ export default {
                     template:`
                     <div>
                       <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-                        <div v-for="stat in stats" @click="$emit('nav',stat.label)" class="cursor-pointer hover:bg-gray-50 overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                          <dt class="truncate text-sm font-medium text-gray-500">Total {{humanize(stat.label)}}</dt>
-                          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{formatNumber(stat.total)}}</dd>
+                        <div v-for="stat in stats" @click="$emit('nav',stat.label)" class="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 overflow-hidden rounded-lg bg-white dark:bg-gray-900 px-4 py-5 shadow sm:p-6">
+                          <dt class="truncate text-sm font-medium text-gray-500 dark:text-gray-400">Total {{humanize(stat.label)}}</dt>
+                          <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-50">{{formatNumber(stat.total)}}</dd>
                         </div>
                       </dl>
                       <div class="mt-8 text-sm font-semibold leading-6">
                         <div class="flex gap-x-2">
                             <div class="mr-2">Go to <span aria-hidden="true">&rarr;</span></div>
-                            <a href="/locode/" class="text-indigo-600">Locode</a>    
+                            <a href="/locode/" class="text-indigo-600 dark:text-indigo-300">Locode</a>    
                             <svg class="h-5 w-5 flex-shrink-0 text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path></svg>                            
-                            <a href="/admin-ui/" class="text-indigo-600">Admin UI</a>
+                            <a href="/admin-ui/" class="text-indigo-600 dark:text-indigo-300">Admin UI</a>
                             <svg class="h-5 w-5 flex-shrink-0 text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path></svg>                            
-                            <a href="/ui/" class="text-indigo-600">API Explorer</a>
+                            <a href="/ui/" class="text-indigo-600 dark:text-indigo-300">API Explorer</a>
                         </div>
                       </div>
                     </div>`,
@@ -104,7 +106,7 @@ export default {
                 },
             },
         }
-        
+
         Object.keys(Sections).forEach(k => {
             const { group, items } = Sections[k]
             Object.keys(items).forEach(x => {
@@ -112,7 +114,7 @@ export default {
                 sections[x].group = group
             });
         })
-        
+
         function getIcon(id) {
             const section = sections[id]
             return section.icon  || typeOf(section.type)?.icon?.svg ||
@@ -127,7 +129,7 @@ export default {
             section.component.props = section.component.props || ['type']
             section.component.emits = section.component.emits || ['nav']
         })
-        
+
         const { user, signIn } = useAuth()
         const client = useClient()
         const sidebar = ref()
@@ -141,10 +143,10 @@ export default {
             if (!args) args = {}
             refreshKey.value++
             activeSection.value = sections[section] || sections.Dashboard
-            if (pushState) history.pushState({ section, ...args }, null, appendQueryString(`#${section}`, args))
+            if (pushState) history.pushState({ section, ...args }, null, appendQueryString(`/#${section}`, args))
             sidebar.value.toggle(false)
         }
-        
+
         function onLogin() {
             location.reload()
         }
@@ -156,7 +158,7 @@ export default {
                 console.log('popstate', event.state)
                 navTo(event.state?.section || getSection(), {}, false)
             })
-            
+
             // Auto Sign In ?user=...&pass=...
             if (location.search) {
                 const q = queryString(location.search)
