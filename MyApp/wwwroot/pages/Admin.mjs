@@ -69,7 +69,7 @@ export default {
     `,
     setup() {
         
-        const { loadMetadata, metadataApi, typeOf } = useMetadata()
+        const { typeOf } = useMetadata()
 
         const sections = {
             Dashboard: {
@@ -151,9 +151,6 @@ export default {
 
         onMounted(async () => {
             console.log('onMounted')
-            await loadMetadata({
-                olderThan: window.Server ? null : location.search.includes('clear=metadata') ? 0 : 60 * 60 * 1000, //1hr
-            })
 
             window.addEventListener('popstate', event => {
                 console.log('popstate', event.state)

@@ -2,10 +2,7 @@
 @inject IWebHostEnvironment Env
 @inject IServiceGatewayFactory GatewayFactory
 
-@if (Env.IsDevelopment())
-{
-    <script>window.Server = @metadataHtml</script>
-}
+<script>window.Server = @metadataHtml</script>
 <script type="module">
 import { useAuth, useMetadata } from "@@servicestack/vue"
 const { signIn } = useAuth()
@@ -13,7 +10,7 @@ signIn(@authJson)
 
 const { loadMetadata } = useMetadata()
 loadMetadata({
-    olderThan: window.Server ? null : location.search.includes('clear=metadata') ? 0 : 60 * 60 * 1000 //1hr
+    olderThan: null
 })
 </script>
 
