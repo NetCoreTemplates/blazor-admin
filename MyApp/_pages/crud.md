@@ -39,9 +39,9 @@ Where okai will generate everything needed to support the feature in your App, i
 - `MyApp.ServiceModel/Jobs.d.ts` - TypeScript Data Models
 - `MyApp.ServiceModel/Jobs.cs` - AutoQuery CRUD APIs and Data Models
 - `wwwroot/admin/sections/Jobs.mjs` - Admin UI Section
-    - requires `blazor-admin` or `blazor-vue` template
+  - requires `blazor-admin` or `blazor-vue` template
 - `MyApp/Migrations/Migration1001.cs` - DB Migrations
-    - requires project with [OrmLite DB Migrations](https://docs.servicestack.net/ormlite/db-migrations)
+  - requires project with [OrmLite DB Migrations](https://docs.servicestack.net/ormlite/db-migrations)
 
 Then to apply the migration and create the tables you can run:
 
@@ -155,7 +155,7 @@ select tables by inheriting from the `AuditBase` base class, e.g:
 
 ```ts
 export class Job extends AuditBase {
-    ...
+...
 }
 ```
 
@@ -183,10 +183,10 @@ AutoQuery APIs and Data Models which blazor-admin uses instead in its [Bookings.
 ```ts
 /// <reference path="./api.d.ts" />
 export type Config = {
-    prompt:    "New Booking"
-    api:       "~/MyApp.ServiceModel/Bookings.cs"
-    migration: "~/MyApp/Migrations/Migration1001.cs"
-    uiMjs:     "~/MyApp/wwwroot/admin/sections/Bookings.mjs"
+  prompt:    "New Booking"
+  api:       "~/MyApp.ServiceModel/Bookings.cs"
+  migration: "~/MyApp/Migrations/Migration1001.cs"
+  uiMjs:     "~/MyApp/wwwroot/admin/sections/Bookings.mjs"
 }
 
 export enum RoomType {
@@ -266,10 +266,10 @@ What files will be generated is controlled in the `Config` section:
 
 ```ts
 export type Config = {
-    prompt:    "New Booking"
-    api:       "~/MyApp.ServiceModel/Bookings.cs"
-    migration: "~/MyApp/Migrations/Migration1001.cs"
-    uiMjs:     "~/MyApp/wwwroot/admin/sections/Bookings.mjs"
+  prompt:    "New Booking"
+  api:       "~/MyApp.ServiceModel/Bookings.cs"
+  migration: "~/MyApp/Migrations/Migration1001.cs"
+  uiMjs:     "~/MyApp/wwwroot/admin/sections/Bookings.mjs"
 }
 ```
 
@@ -314,10 +314,10 @@ like `[Icon]` class attribute and `[AutoIncrement]` property attributes are only
 ```ts
 @icon({svg:"<svg>...</svg>"})
 export class Booking {
-    @autoIncrement()
-    id: number
-    @intlNumber({currency:"USD"})
-    cost: decimal
+  @autoIncrement()
+  id: number
+  @intlNumber({currency:"USD"})
+  cost: decimal
 }
 ```
 
@@ -328,8 +328,8 @@ property attributes and are only generated on the APIs Request DTOs:
 @tag("Bookings")
 @validateHasRole("Employee")
 export class Booking {
-    @validateGreaterThan(0)
-    cost: decimal
+  @validateGreaterThan(0)
+  cost: decimal
 }
 ```
 
@@ -437,9 +437,9 @@ There's special behavior for `"nameof(...)"` and `"typeof(...)"` string attribut
 
 ```ts
 export class Booking extends AuditBase {
-    @ref({model: "nameof(Coupon)", refId: "nameof(Coupon.Id)", refLabel: "nameof(Coupon.Description)"})
-    @references("typeof(Coupon)")
-    couponId?: string
+  @ref({model: "nameof(Coupon)", refId: "nameof(Coupon.Id)", refLabel: "nameof(Coupon.Description)"})
+  @references("typeof(Coupon)")
+  couponId?: string
 }
 ```
 
@@ -459,21 +459,21 @@ public class Booking : AuditBase
 To improve the default out-of-the-box experience some attributes are included by default, including:
 
 - `[Icon]` attribute on Data Models based on the Data Model name
-    - prevent by adding empty `@icon()` attribute
+  - prevent by adding empty `@icon()` attribute
 - `[AutoIncrement]` on `id` number properties if no other `[PrimaryKey]` attribute is defined
-    - prevent by adding `@primaryKey()` or `@autoId()`
+  - prevent by adding `@primaryKey()` or `@autoId()`
 - `[Validate*]` attributes added to Create/Update APIs on non-nullable properties
-    - prevent by adding empty `@validate()` attribute
+  - prevent by adding empty `@validate()` attribute
 
 Here's an example which changes the default behavior for the default attributes above:
 
 ```ts
 @icon()
 export class Todo {
-    @primaryKey()
-    id: number
-    @validate()
-    name: string
+  @primaryKey()
+  id: number
+  @validate()
+  name: string
 }
 ```
 
