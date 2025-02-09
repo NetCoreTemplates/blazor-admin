@@ -63,5 +63,5 @@ export class Coupon extends AuditBase {
   id: string
   description: string
   discount: number
-  expiryDate: Date
+  expiryDate?: Date
 }

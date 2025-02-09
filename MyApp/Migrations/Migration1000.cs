@@ -40,7 +40,7 @@ public class Migration1000 : MigrationBase
         public string Id { get; set; }
         public string Description { get; set; }
         public decimal Discount { get; set; }
-        public DateTime ExpiryDate { get; set; }
+        public DateTime? ExpiryDate { get; set; }
     }
     
     public enum RoomType

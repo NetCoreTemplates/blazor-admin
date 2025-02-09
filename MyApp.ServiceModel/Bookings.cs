@@ -95,7 +95,7 @@ public class CreateCoupon : ICreateDb<Coupon>, IReturn<IdResponse>
     [ValidateNotEmpty]
     public string Description { get; set; }
     public decimal Discount { get; set; }
-    public DateTime ExpiryDate { get; set; }
+    public DateTime? ExpiryDate { get; set; }
 }
 
 [Tag("Bookings")]
@@ -154,7 +154,7 @@ public class Coupon : AuditBase
     public string Id { get; set; }
     public string Description { get; set; }
     public decimal Discount { get; set; }
-    public DateTime ExpiryDate { get; set; }
+    public DateTime? ExpiryDate { get; set; }
 }
 
 
