@@ -1,5 +1,6 @@
 /// <reference path="./api.d.ts" />
 export type Config = {
+  tip:       "Remove Bookings Feature: npx okai rm Bookings.d.ts"
   prompt:    "New Booking"
   api:       "~/MyApp.ServiceModel/Bookings.cs"
   migration: "~/MyApp/Migrations/Migration1000.cs"
