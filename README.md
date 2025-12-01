@@ -1,17 +1,15 @@
 # blazor-admin
 
-.NET 8.0 Simple, Server Rendered Blazor Tailwind App with Vue interactivity.
+.NET 10.0 Simple, Server Rendered Blazor Tailwind App with Vue interactivity.
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/blazor-vue.png)
 
-> Browse [source code](https://github.com/NetCoreTemplates/blazor-admin) and install with [dotnet-new](https://docs.servicestack.net/dotnet-new):
+> Browse [source code](https://github.com/NetCoreTemplates/blazor-admin):
 
-    $ dotnet tool install -g x
+```bash
+npx create-net blazor-admin ProjectName
+```
 
-    $ x new blazor-admin ProjectName
+## Jumpstart with Copilot
 
-Alternatively write new project files directly into an empty repository, using the Directory Name as the ProjectName:
-
-    $ git clone https://github.com/<User>/<ProjectName>.git
-    $ cd <ProjectName>
-    $ x new blazor-admin
+Instantly [scaffold a new App with this template](https://github.com/new?template_name=blazor-admin&template_owner=NetCoreTemplates) using GitHub Copilot, just describe the features you want and watch Copilot build it!
