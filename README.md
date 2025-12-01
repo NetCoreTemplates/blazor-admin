@@ -4,7 +4,7 @@
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/blazor-vue.png)
 
-> Browse [source code](https://github.com/NetCoreTemplates/blazor-admin) and install with [dotnet-new](https://docs.servicestack.net/dotnet-new):
+> Browse [source code](https://github.com/NetCoreTemplates/blazor-admin):
 
     $ dotnet tool install -g x
 
